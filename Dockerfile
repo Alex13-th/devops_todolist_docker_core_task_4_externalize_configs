@@ -15,8 +15,12 @@ ENV PYTHONUNBUFFERED=1
 
 COPY --from=builder /app .
 
-RUN pip install --upgrade pip && \
-    pip install -r requirements.txt
+RUN apt-get update && apt-get install -y \
+    default-libmysqlclient-dev \
+    gcc \
+    python3-dev \
+    build-essential \
+ && pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8080
 

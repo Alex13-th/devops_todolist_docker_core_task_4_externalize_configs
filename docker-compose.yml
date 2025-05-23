@@ -11,7 +11,13 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - PYTHONUNBUFFERED=1
+      PYTHONUNBUFFERED: 1
+      ENGINE: django.db.backends.mysql
+      NAME: app_db
+      USER: app_user
+      PASSWORD: devpassword123
+      HOST: mysql
+      PORT: "3306"
     networks:
       - todoapp-net
     depends_on:
@@ -28,10 +34,10 @@ services:
     volumes:
       - todoapp-db-data:/var/lib/mysql
     environment:
-      - MYSQL_ROOT_PASSWORD=1234
-      - MYSQL_DATABASE=app_db
-      - MYSQL_USER=app_user
-      - MYSQL_PASSWORD=1234
+      MYSQL_ROOT_PASSWORD: devpassword123
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: app_user
+      MYSQL_PASSWORD: devpassword123
     networks:
       - todoapp-net
 volumes:
